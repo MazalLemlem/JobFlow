@@ -1,23 +1,19 @@
 import { useState } from "react";
 import FormInput from "../components/FormInput";
 import PasswordInput from "../components/PasswordInput";
-import { registerUser } from "../services/authService";
-import { validateRegisterForm } from "../utils/registerValidation";
+import { loginUser } from "../services/authService";
+import { validateLoginForm } from "../utils/loginValidation";
 import { Link } from "react-router-dom";
 import "../styles/register.css";
 import "../styles/form.css";
 
-function RegisterPage() {
-  const [fullName, setFullName] = useState("");
+function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [errors, setErrors] = useState({
-    fullName: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   const [serverMessage, setServerMessage] = useState("");
@@ -30,12 +26,7 @@ function RegisterPage() {
 
     setServerMessage("");
 
-    const newErrors = validateRegisterForm(
-      fullName,
-      email,
-      password,
-      confirmPassword
-    );
+    const newErrors = validateLoginForm(email, password);
 
     setErrors(newErrors);
 
@@ -47,11 +38,7 @@ function RegisterPage() {
       return;
     }
 
-    const result = await registerUser(
-      fullName,
-      email,
-      password
-    );
+    const result = await loginUser(email, password);
 
     if (!result.ok) {
       setServerMessage(result.data.detail);
@@ -61,11 +48,6 @@ function RegisterPage() {
 
     setServerMessage(result.data.message);
     setIsSuccess(true);
-
-    setFullName("");
-    setEmail("");
-    setPassword("");
-    setConfirmPassword(""); 
   }
 
   return (
@@ -73,23 +55,13 @@ function RegisterPage() {
       <div className="register-card">
         <h1 className="logo">JobFlow</h1>
 
-        <h2>Create your account</h2>
+        <h2>Log in to your account</h2>
 
         <p className="subtitle">
-          Start managing your job search in one place
+          Continue managing your job search
         </p>
 
         <form onSubmit={handleSubmit} noValidate>
-          <FormInput
-            id="fullName"
-            label="Full Name"
-            type="text"
-            placeholder="Enter your full name"
-            value={fullName}
-            error={errors.fullName}
-            onChange={setFullName}
-          />
-
           <FormInput
             id="email"
             label="Email"
@@ -109,15 +81,6 @@ function RegisterPage() {
             onChange={setPassword}
           />
 
-          <PasswordInput
-            id="confirmPassword"
-            label="Confirm Password"
-            placeholder="Confirm your password"
-            value={confirmPassword}
-            error={errors.confirmPassword}
-            onChange={setConfirmPassword}
-          />
-
           {serverMessage && (
             <p
               className={
@@ -131,16 +94,16 @@ function RegisterPage() {
           )}
 
           <button type="submit" className="register-button">
-            Create Account
+            Log In
           </button>
         </form>
 
         <p className="login-link">
-          Already have an account? <Link to="/login">Log in</Link>
+          Don't have an account? <Link to="/register">Create account</Link>
         </p>
       </div>
     </div>
   );
 }
 
-export default RegisterPage;
+export default LoginPage;

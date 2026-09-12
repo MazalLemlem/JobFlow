@@ -4,8 +4,8 @@ from sqlalchemy.orm import Session
 
 from app.database import get_db
 from app.models.user import User
-from app.schemas.auth import RegisterRequest
-from app.utils.security import hash_password
+from app.schemas.auth import LoginRequest, RegisterRequest
+from app.utils.security import hash_password, verify_password
 
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
@@ -41,4 +41,36 @@ def register_user(
         "id": new_user.id,
         "full_name": new_user.full_name,
         "email": new_user.email,
+    }
+
+
+@router.post("/login")
+def login_user(
+    user: LoginRequest,
+    db: Session = Depends(get_db),
+):
+    existing_user = db.scalar(
+        select(User).where(User.email == user.email)
+    )
+
+    if not existing_user:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid email or password",
+        )
+
+    if not verify_password(
+        user.password,
+        existing_user.password_hash,
+    ):
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid email or password",
+        )
+
+    return {
+        "message": "Login successful",
+        "id": existing_user.id,
+        "full_name": existing_user.full_name,
+        "email": existing_user.email,
     }

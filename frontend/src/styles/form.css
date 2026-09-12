@@ -57,3 +57,16 @@
   cursor: pointer;
   font-size: 18px;
 }
+
+.server-message {
+  margin-bottom: 14px;
+  font-size: 14px;
+}
+
+.server-message.success {
+  color: #16a34a;
+}
+
+.server-message.error {
+  color: #dc2626;
+}

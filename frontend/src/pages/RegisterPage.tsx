@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FormInput from "../components/FormInput";
 import PasswordInput from "../components/PasswordInput";
+import { registerUser } from "../services/authService";
 import { validateRegisterForm } from "../utils/registerValidation";
 import "../styles/register.css";
 import "../styles/form.css";
@@ -18,8 +19,15 @@ function RegisterPage() {
     confirmPassword: "",
   });
 
-  function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
+  const [serverMessage, setServerMessage] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  async function handleSubmit(
+    event: React.SubmitEvent<HTMLFormElement>
+  ) {
     event.preventDefault();
+    
+    setServerMessage("");
 
     const newErrors = validateRegisterForm(
       fullName,
@@ -38,11 +46,25 @@ function RegisterPage() {
       return;
     }
 
-    console.log({
+    const result = await registerUser(
       fullName,
       email,
-      password,
-    });
+      password
+    );
+
+    if (!result.ok) {
+      setServerMessage(result.data.detail);
+      setIsSuccess(false);
+      return;
+    }
+
+    setServerMessage(result.data.message);
+    setIsSuccess(true);
+
+    setFullName("");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword(""); 
   }
 
   return (
@@ -94,6 +116,18 @@ function RegisterPage() {
             error={errors.confirmPassword}
             onChange={setConfirmPassword}
           />
+
+          {serverMessage && (
+            <p
+              className={
+                isSuccess
+                  ? "server-message success"
+                  : "server-message error"
+              }
+            >
+              {serverMessage}
+            </p>
+          )}
 
           <button type="submit" className="register-button">
             Create Account

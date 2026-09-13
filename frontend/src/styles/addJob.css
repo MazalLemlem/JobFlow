@@ -1,0 +1,96 @@
+.add-job-page {
+  min-height: 100vh;
+  background-color: #f5f7fb;
+  padding: 32px;
+}
+
+.add-job-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.add-job-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.back-button {
+  border: none;
+  background: none;
+  color: #2563eb;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.add-job-header h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+}
+
+.add-job-header p {
+  margin: 0 0 28px;
+  color: #6b7280;
+}
+
+.add-job-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.add-job-form-card,
+.add-job-info-card {
+  background-color: white;
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.add-job-form-card textarea {
+  min-height: 180px;
+  resize: vertical;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.add-job-form-card select {
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: white;
+}
+
+.add-job-info-card h3 {
+  margin-top: 0;
+}
+
+.add-job-info-card p {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.add-job-submit {
+  width: 100%;
+  margin-top: 8px;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2563eb;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.add-job-submit:hover {
+  background-color: #1d4ed8;
+}

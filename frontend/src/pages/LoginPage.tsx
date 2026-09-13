@@ -4,10 +4,13 @@ import PasswordInput from "../components/PasswordInput";
 import { loginUser } from "../services/authService";
 import { validateLoginForm } from "../utils/loginValidation";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../styles/register.css";
 import "../styles/form.css";
 
 function LoginPage() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -48,6 +51,8 @@ function LoginPage() {
 
     setServerMessage(result.data.message);
     setIsSuccess(true);
+
+    navigate("/dashboard");
   }
 
   return (

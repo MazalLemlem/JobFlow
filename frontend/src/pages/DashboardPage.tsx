@@ -35,6 +35,11 @@ function DashboardPage() {
     loadJobs();
   }, []);
 
+  function handleLogout() {
+    localStorage.removeItem("user_id");
+    navigate("/login");
+  }
+
   const totalApplications = jobs.length;
 
   const offers = jobs.filter(
@@ -63,7 +68,7 @@ function DashboardPage() {
             <button
               type="button"
               className="logout-button"
-              onClick={() => navigate("/login")}
+              onClick={handleLogout}
             >
               Log out
             </button>

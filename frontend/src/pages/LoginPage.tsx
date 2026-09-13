@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import FormInput from "../components/FormInput";
 import PasswordInput from "../components/PasswordInput";
 import { loginUser } from "../services/authService";
 import { validateLoginForm } from "../utils/loginValidation";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+
 import "../styles/register.css";
 import "../styles/form.css";
 
@@ -48,6 +49,11 @@ function LoginPage() {
       setIsSuccess(false);
       return;
     }
+
+    localStorage.setItem(
+      "user_id",
+      result.data.id.toString()
+    );
 
     setServerMessage(result.data.message);
     setIsSuccess(true);
@@ -98,13 +104,19 @@ function LoginPage() {
             </p>
           )}
 
-          <button type="submit" className="register-button">
+          <button
+            type="submit"
+            className="register-button"
+          >
             Log In
           </button>
         </form>
 
         <p className="login-link">
-          Don't have an account? <Link to="/register">Create account</Link>
+          Don't have an account?{" "}
+          <Link to="/register">
+            Create account
+          </Link>
         </p>
       </div>
     </div>

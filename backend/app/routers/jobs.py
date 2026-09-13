@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 
 from app.database import get_db
 from app.models.job import Job
+from app.models.user import User
 from app.schemas.job import JobCreateRequest, JobStatusUpdateRequest
 
 
@@ -14,7 +15,16 @@ def create_job(
     job: JobCreateRequest,
     db: Session = Depends(get_db),
 ):
+    user = db.get(User, job.user_id)
+
+    if not user:
+        raise HTTPException(
+            status_code=404,
+            detail="User not found",
+        )
+
     new_job = Job(
+        user_id=job.user_id,
         company=job.company,
         job_title=job.job_title,
         job_description=job.job_description,
@@ -28,6 +38,7 @@ def create_job(
     return {
         "message": "Job created successfully",
         "id": new_job.id,
+        "user_id": new_job.user_id,
         "company": new_job.company,
         "job_title": new_job.job_title,
         "job_description": new_job.job_description,
@@ -37,10 +48,12 @@ def create_job(
 
 @router.get("")
 def get_jobs(
+    user_id: int,
     db: Session = Depends(get_db),
 ):
     jobs = (
         db.query(Job)
+        .filter(Job.user_id == user_id)
         .order_by(Job.created_at.desc())
         .all()
     )
@@ -51,9 +64,17 @@ def get_jobs(
 @router.get("/{job_id}")
 def get_job(
     job_id: int,
+    user_id: int,
     db: Session = Depends(get_db),
 ):
-    job = db.get(Job, job_id)
+    job = (
+        db.query(Job)
+        .filter(
+            Job.id == job_id,
+            Job.user_id == user_id,
+        )
+        .first()
+    )
 
     if not job:
         raise HTTPException(
@@ -67,10 +88,18 @@ def get_job(
 @router.patch("/{job_id}")
 def update_job_status(
     job_id: int,
+    user_id: int,
     update: JobStatusUpdateRequest,
     db: Session = Depends(get_db),
 ):
-    job = db.get(Job, job_id)
+    job = (
+        db.query(Job)
+        .filter(
+            Job.id == job_id,
+            Job.user_id == user_id,
+        )
+        .first()
+    )
 
     if not job:
         raise HTTPException(
@@ -86,5 +115,6 @@ def update_job_status(
     return {
         "message": "Job status updated successfully",
         "id": job.id,
+        "user_id": job.user_id,
         "status": job.status,
     }

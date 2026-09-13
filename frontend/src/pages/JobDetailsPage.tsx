@@ -23,8 +23,15 @@ function JobDetailsPage() {
 
   useEffect(() => {
     async function loadJob() {
+      const userId = localStorage.getItem("user_id");
+
+      if (!userId) {
+        navigate("/login");
+        return;
+      }
+
       const response = await fetch(
-        `http://127.0.0.1:8000/jobs/${id}`
+        `http://127.0.0.1:8000/jobs/${id}?user_id=${userId}`
       );
 
       const data = await response.json();
@@ -40,7 +47,7 @@ function JobDetailsPage() {
     }
 
     loadJob();
-  }, [id]);
+  }, [id, navigate]);
 
   async function handleStatusChange(
     newStatus: string

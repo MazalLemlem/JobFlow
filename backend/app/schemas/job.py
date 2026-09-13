@@ -2,6 +2,7 @@ from pydantic import BaseModel
 
 
 class JobCreateRequest(BaseModel):
+    user_id: int
     company: str
     job_title: str
     job_description: str

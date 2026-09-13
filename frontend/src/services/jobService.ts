@@ -1,9 +1,22 @@
+function getCurrentUserId() {
+  const userId = localStorage.getItem("user_id");
+
+  if (!userId) {
+    throw new Error("No logged-in user found");
+  }
+
+  return Number(userId);
+}
+
+
 export async function createJob(
   company: string,
   jobTitle: string,
   jobDescription: string,
   status: string
 ) {
+  const userId = getCurrentUserId();
+
   const response = await fetch(
     "http://127.0.0.1:8000/jobs",
     {
@@ -12,6 +25,7 @@ export async function createJob(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        user_id: userId,
         company,
         job_title: jobTitle,
         job_description: jobDescription,
@@ -30,8 +44,10 @@ export async function createJob(
 
 
 export async function getJobs() {
+  const userId = getCurrentUserId();
+
   const response = await fetch(
-    "http://127.0.0.1:8000/jobs"
+    `http://127.0.0.1:8000/jobs?user_id=${userId}`
   );
 
   const data = await response.json();
@@ -47,8 +63,10 @@ export async function updateJobStatus(
   jobId: number,
   status: string
 ) {
+  const userId = getCurrentUserId();
+
   const response = await fetch(
-    `http://127.0.0.1:8000/jobs/${jobId}`,
+    `http://127.0.0.1:8000/jobs/${jobId}?user_id=${userId}`,
     {
       method: "PATCH",
       headers: {

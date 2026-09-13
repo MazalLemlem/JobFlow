@@ -77,9 +77,13 @@ function JobsPage() {
         <h1>{pageTitle}</h1>
 
         {isLoading ? (
-          <p>Loading applications...</p>
+          <div className="jobs-message">
+            Loading applications...
+          </div>
         ) : displayedJobs.length === 0 ? (
-          <p>No applications found.</p>
+          <div className="jobs-message">
+            No applications found.
+          </div>
         ) : (
           <div className="jobs-list">
             {displayedJobs.map((job) => (
@@ -95,7 +99,11 @@ function JobsPage() {
                   <p>{job.company}</p>
                 </div>
 
-                <span className="job-list-status">
+                <span
+                  className={`job-list-status status-${job.status
+                    .toLowerCase()
+                    .replaceAll(" ", "-")}`}
+                >
                   {job.status}
                 </span>
               </div>

@@ -129,7 +129,11 @@ function JobDetailsPage() {
               </p>
             </div>
 
-            <span className="job-details-status">
+            <span
+              className={`job-details-status status-${job.status
+                .toLowerCase()
+                .replaceAll(" ", "-")}`}
+            >
               {job.status}
             </span>
           </div>

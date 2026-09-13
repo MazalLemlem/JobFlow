@@ -1,64 +1,164 @@
-.register-page { background-color: red; }
-
 .register-page {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f5f7fb;
-  padding: 20px;
+
+  padding: 32px 20px;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(37, 99, 235, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(79, 70, 229, 0.1),
+      transparent 35%
+    ),
+    #f8fafc;
 }
 
 .register-card {
   width: 100%;
-  max-width: 420px;
-  background-color: white;
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  max-width: 430px;
+
+  background-color: #ffffff;
+
+  padding: 42px 40px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+
+  box-shadow:
+    0 20px 45px rgba(15, 23, 42, 0.08),
+    0 4px 12px rgba(15, 23, 42, 0.04);
 }
 
 .logo {
-  margin: 0 0 12px;
+  margin: 0 0 26px;
+
   text-align: center;
-  font-size: 32px;
+
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -1.2px;
+
+  color: #2563eb;
 }
 
 .register-card h2 {
-  margin-bottom: 8px;
+  margin: 0 0 8px;
+
   text-align: center;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  color: #111827;
 }
 
 .subtitle {
-  margin-bottom: 28px;
+  margin: 0 0 30px;
+
   text-align: center;
+
+  font-size: 15px;
+  line-height: 1.5;
+
   color: #6b7280;
 }
 
 .register-button {
   width: 100%;
-  padding: 12px;
+
+  margin-top: 6px;
+  padding: 13px 16px;
+
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
+
   background-color: #2563eb;
-  color: white;
-  font-size: 16px;
+  color: #ffffff;
+
+  font-size: 15px;
   font-weight: 600;
+
   cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .register-button:hover {
   background-color: #1d4ed8;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
+}
+
+.register-button:active {
+  transform: translateY(0);
 }
 
 .login-link {
-  margin-top: 20px;
+  margin: 24px 0 0;
+
   text-align: center;
+
+  font-size: 14px;
+
   color: #6b7280;
 }
 
 .login-link a {
   color: #2563eb;
+
   text-decoration: none;
   font-weight: 600;
+
+  transition: color 0.2s ease;
+}
+
+.login-link a:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.server-message {
+  margin: 4px 0 16px;
+  padding: 10px 12px;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+  text-align: center;
+}
+
+.server-message.error {
+  background-color: #fef2f2;
+  color: #b91c1c;
+}
+
+.server-message.success {
+  background-color: #f0fdf4;
+  color: #15803d;
+}
+
+@media (max-width: 520px) {
+  .register-card {
+    padding: 34px 24px;
+  }
+
+  .logo {
+    font-size: 30px;
+  }
+
+  .register-card h2 {
+    font-size: 22px;
+  }
 }

@@ -1,53 +1,227 @@
 .jobs-page {
   min-height: 100vh;
-  background-color: #f5f7fb;
-  padding: 32px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f8fafc 0%,
+      #f3f6fb 100%
+    );
+
+  padding: 36px 24px;
 }
 
 .jobs-container {
   max-width: 900px;
+
   margin: 0 auto;
 }
 
 .jobs-container h1 {
-  margin: 24px 0;
+  margin: 26px 0;
+
+  font-size: 32px;
+  font-weight: 800;
+
+  letter-spacing: -0.8px;
+
+  color: #111827;
+}
+
+.back-button {
+  border: none;
+
+  background: none;
+
+  color: #2563eb;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  padding: 0;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.back-button:hover {
+  color: #1d4ed8;
+
+  transform: translateX(-2px);
 }
 
 .jobs-list {
   display: flex;
+
   flex-direction: column;
-  gap: 14px;
+
+  gap: 12px;
 }
 
 .job-list-card {
   display: flex;
+
   justify-content: space-between;
   align-items: center;
-  background-color: white;
-  padding: 20px;
-  border-radius: 12px;
+
+  gap: 20px;
+
+  padding: 20px 22px;
+
   border: 1px solid #e5e7eb;
+
+  border-radius: 14px;
+
+  background-color: #ffffff;
+
   cursor: pointer;
+
+  box-shadow:
+    0 6px 18px rgba(15, 23, 42, 0.04);
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .job-list-card:hover {
-  background-color: #f9fafb;
+  background-color: #fbfdff;
+
+  border-color: #d7dce4;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 24px rgba(15, 23, 42, 0.07);
 }
 
 .job-list-card h3 {
   margin: 0 0 6px;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  color: #111827;
 }
 
 .job-list-card p {
   margin: 0;
+
+  font-size: 14px;
+
   color: #6b7280;
 }
 
 .job-list-status {
-  padding: 6px 10px;
-  border-radius: 20px;
+  flex-shrink: 0;
+
+  padding: 7px 12px;
+
+  border: 1px solid transparent;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 0.1px;
+}
+
+.status-interested {
+  background-color: #f3f4f6;
+
+  border-color: #e5e7eb;
+
+  color: #4b5563;
+}
+
+.status-applied {
   background-color: #eff6ff;
+
+  border-color: #bfdbfe;
+
   color: #2563eb;
-  font-size: 13px;
-  font-weight: 600;
+}
+
+.status-hr-interview {
+  background-color: #fffbeb;
+
+  border-color: #fde68a;
+
+  color: #b45309;
+}
+
+.status-technical-interview {
+  background-color: #f5f3ff;
+
+  border-color: #ddd6fe;
+
+  color: #7c3aed;
+}
+
+.status-final-interview {
+  background-color: #faf5ff;
+
+  border-color: #e9d5ff;
+
+  color: #9333ea;
+}
+
+.status-offer {
+  background-color: #f0fdf4;
+
+  border-color: #bbf7d0;
+
+  color: #15803d;
+}
+
+.status-rejected {
+  background-color: #fef2f2;
+
+  border-color: #fecaca;
+
+  color: #dc2626;
+}
+
+.status-withdrawn {
+  background-color: #f3f4f6;
+
+  border-color: #d1d5db;
+
+  color: #6b7280;
+}
+
+.jobs-message {
+  padding: 40px 20px;
+
+  border: 1px dashed #d1d5db;
+
+  border-radius: 12px;
+
+  background-color: #f9fafb;
+
+  text-align: center;
+
+  color: #6b7280;
+}
+
+@media (max-width: 520px) {
+  .jobs-page {
+    padding: 24px 16px;
+  }
+
+  .jobs-container h1 {
+    font-size: 28px;
+  }
+
+  .job-list-card {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
 }

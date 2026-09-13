@@ -1,96 +1,264 @@
 .add-job-page {
   min-height: 100vh;
-  background-color: #f5f7fb;
-  padding: 32px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f8fafc 0%,
+      #f3f6fb 100%
+    );
+
+  padding: 36px 24px;
 }
 
 .add-job-container {
   max-width: 1000px;
+
   margin: 0 auto;
 }
 
 .add-job-topbar {
   display: flex;
+
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 28px;
+
+  margin-bottom: 30px;
 }
 
 .back-button {
   border: none;
+
   background: none;
+
   color: #2563eb;
-  font-size: 15px;
+
+  font-size: 14px;
   font-weight: 600;
+
   cursor: pointer;
+
   padding: 0;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.back-button:hover {
+  color: #1d4ed8;
+
+  transform: translateX(-2px);
 }
 
 .add-job-header h1 {
   margin: 0 0 8px;
-  font-size: 30px;
+
+  font-size: 32px;
+  font-weight: 800;
+
+  letter-spacing: -0.8px;
+
+  color: #111827;
 }
 
 .add-job-header p {
-  margin: 0 0 28px;
+  margin: 0 0 30px;
+
+  font-size: 15px;
+  line-height: 1.5;
+
   color: #6b7280;
 }
 
 .add-job-content {
   display: grid;
+
   grid-template-columns: 2fr 1fr;
+
   gap: 24px;
+
   align-items: start;
 }
 
 .add-job-form-card,
 .add-job-info-card {
-  background-color: white;
-  border-radius: 14px;
+  background-color: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 16px;
+
   padding: 28px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+
+  box-shadow:
+    0 8px 22px rgba(15, 23, 42, 0.05),
+    0 2px 6px rgba(15, 23, 42, 0.03);
 }
 
 .add-job-form-card textarea {
+  width: 100%;
+
   min-height: 180px;
+
   resize: vertical;
+
   padding: 12px 14px;
+
   border: 1px solid #d1d5db;
-  border-radius: 8px;
+
+  border-radius: 10px;
+
+  background-color: #ffffff;
+
+  color: #111827;
+
   font-size: 15px;
   font-family: inherit;
+  line-height: 1.5;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.add-job-form-card textarea:focus {
+  outline: none;
+
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .add-job-form-card select {
+  width: 100%;
+
   padding: 12px 14px;
+
   border: 1px solid #d1d5db;
-  border-radius: 8px;
+
+  border-radius: 10px;
+
+  background-color: #ffffff;
+
+  color: #111827;
+
   font-size: 15px;
-  background-color: white;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.add-job-form-card select:focus {
+  outline: none;
+
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.add-job-info-card {
+  position: relative;
+
+  overflow: hidden;
+}
+
+.add-job-info-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 4px;
+
+  background-color: #2563eb;
 }
 
 .add-job-info-card h3 {
-  margin-top: 0;
+  margin: 0 0 12px;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  color: #111827;
 }
 
 .add-job-info-card p {
+  margin: 0;
+
   color: #6b7280;
-  line-height: 1.6;
+
+  font-size: 14px;
+  line-height: 1.7;
 }
 
 .add-job-submit {
   width: 100%;
-  margin-top: 8px;
-  padding: 13px;
+
+  margin-top: 10px;
+
+  padding: 13px 16px;
+
   border: none;
-  border-radius: 8px;
+
+  border-radius: 10px;
+
   background-color: #2563eb;
-  color: white;
+
+  color: #ffffff;
+
   font-size: 15px;
   font-weight: 600;
+
   cursor: pointer;
+
+  box-shadow:
+    0 6px 14px rgba(37, 99, 235, 0.18);
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .add-job-submit:hover {
   background-color: #1d4ed8;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 8px 18px rgba(37, 99, 235, 0.24);
+}
+
+.add-job-submit:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 800px) {
+  .add-job-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .add-job-page {
+    padding: 24px 16px;
+  }
+
+  .add-job-header h1 {
+    font-size: 28px;
+  }
+
+  .add-job-form-card,
+  .add-job-info-card {
+    padding: 22px;
+  }
 }

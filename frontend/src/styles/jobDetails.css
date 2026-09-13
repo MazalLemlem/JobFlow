@@ -1,90 +1,268 @@
 .job-details-page {
   min-height: 100vh;
-  background-color: #f5f7fb;
-  padding: 32px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f8fafc 0%,
+      #f3f6fb 100%
+    );
+
+  padding: 36px 24px;
 }
 
 .job-details-container {
   max-width: 900px;
+
   margin: 0 auto;
 }
 
+.back-button {
+  border: none;
+
+  background: none;
+
+  color: #2563eb;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  padding: 0;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.back-button:hover {
+  color: #1d4ed8;
+
+  transform: translateX(-2px);
+}
+
 .job-details-card {
-  margin-top: 24px;
-  background-color: white;
+  margin-top: 28px;
+
   padding: 32px;
-  border-radius: 14px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 16px;
+
+  background-color: #ffffff;
+
+  box-shadow:
+    0 8px 22px rgba(15, 23, 42, 0.05),
+    0 2px 6px rgba(15, 23, 42, 0.03);
 }
 
 .job-details-header {
   display: flex;
+
   justify-content: space-between;
   align-items: flex-start;
-  gap: 20px;
+
+  gap: 24px;
+
   margin-bottom: 32px;
 }
 
 .job-details-header h1 {
   margin: 0 0 8px;
-  font-size: 30px;
+
+  font-size: 32px;
+  font-weight: 800;
+
+  letter-spacing: -0.8px;
+
+  color: #111827;
 }
 
 .job-details-company {
   margin: 0;
+
   color: #6b7280;
-  font-size: 18px;
+
+  font-size: 17px;
 }
 
 .job-details-status {
+  flex-shrink: 0;
+
   padding: 8px 14px;
-  border-radius: 20px;
-  background-color: #eff6ff;
-  color: #2563eb;
-  font-size: 14px;
-  font-weight: 600;
+
+  border: 1px solid transparent;
+
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  letter-spacing: 0.1px;
 }
 
 .job-details-section {
   border-top: 1px solid #e5e7eb;
-  padding-top: 24px;
+
+  padding-top: 26px;
+
+  margin-top: 26px;
 }
 
 .job-details-section h2 {
-  margin-top: 0;
+  margin: 0 0 18px;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  color: #111827;
 }
 
 .job-description {
-  margin-bottom: 0;
+  margin: 0;
+
   color: #374151;
-  line-height: 1.7;
+
+  font-size: 15px;
+  line-height: 1.8;
+
   white-space: pre-wrap;
 }
 
 .job-status-select {
   width: 100%;
-  max-width: 280px;
-  padding: 11px 14px;
+  max-width: 320px;
+
+  padding: 12px 14px;
+
   border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background-color: white;
+
+  border-radius: 10px;
+
+  background-color: #ffffff;
+
+  color: #111827;
+
   font-size: 15px;
+
   cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .job-status-select:focus {
   outline: none;
+
   border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .job-status-select:disabled {
   cursor: not-allowed;
+
   opacity: 0.7;
+
+  background-color: #f9fafb;
 }
 
 .status-update-message {
-  margin: 10px 0 0;
+  margin: 12px 0 0;
+
   color: #6b7280;
-  font-size: 14px;
+
+  font-size: 13px;
+}
+
+/* Status colors */
+
+.status-interested {
+  background-color: #f3f4f6;
+
+  border-color: #e5e7eb;
+
+  color: #4b5563;
+}
+
+.status-applied {
+  background-color: #eff6ff;
+
+  border-color: #bfdbfe;
+
+  color: #2563eb;
+}
+
+.status-hr-interview {
+  background-color: #fffbeb;
+
+  border-color: #fde68a;
+
+  color: #b45309;
+}
+
+.status-technical-interview {
+  background-color: #f5f3ff;
+
+  border-color: #ddd6fe;
+
+  color: #7c3aed;
+}
+
+.status-final-interview {
+  background-color: #faf5ff;
+
+  border-color: #e9d5ff;
+
+  color: #9333ea;
+}
+
+.status-offer {
+  background-color: #f0fdf4;
+
+  border-color: #bbf7d0;
+
+  color: #15803d;
+}
+
+.status-rejected {
+  background-color: #fef2f2;
+
+  border-color: #fecaca;
+
+  color: #dc2626;
+}
+
+.status-withdrawn {
+  background-color: #f3f4f6;
+
+  border-color: #d1d5db;
+
+  color: #6b7280;
+}
+
+@media (max-width: 620px) {
+  .job-details-page {
+    padding: 24px 16px;
+  }
+
+  .job-details-card {
+    padding: 24px 20px;
+  }
+
+  .job-details-header {
+    flex-direction: column;
+  }
+
+  .job-details-header h1 {
+    font-size: 28px;
+  }
+
+  .job-status-select {
+    max-width: 100%;
+  }
 }

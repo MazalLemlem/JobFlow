@@ -59,6 +59,7 @@ function DashboardPage() {
         <header className="dashboard-header">
           <div>
             <h1>JobFlow</h1>
+
             <p>
               Welcome back! Here's your job search overview.
             </p>
@@ -89,6 +90,7 @@ function DashboardPage() {
             onClick={() => navigate("/jobs")}
           >
             <h3>Total Applications</h3>
+
             <p className="summary-number">
               {totalApplications}
             </p>
@@ -101,6 +103,7 @@ function DashboardPage() {
             }
           >
             <h3>In Progress</h3>
+
             <p className="summary-number">
               {inProgress}
             </p>
@@ -113,6 +116,7 @@ function DashboardPage() {
             }
           >
             <h3>Offers</h3>
+
             <p className="summary-number">
               {offers}
             </p>
@@ -129,6 +133,7 @@ function DashboardPage() {
           ) : jobs.length === 0 ? (
             <div className="empty-state">
               <p>No applications yet.</p>
+
               <p>
                 Add your first job opportunity to get started.
               </p>
@@ -151,7 +156,11 @@ function DashboardPage() {
                     </p>
                   </div>
 
-                  <span className="application-status">
+                  <span
+                    className={`application-status status-${job.status
+                      .toLowerCase()
+                      .replaceAll(" ", "-")}`}
+                  >
                     {job.status}
                   </span>
                 </div>

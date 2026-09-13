@@ -17,10 +17,18 @@ function AddJobPage() {
   ) {
     event.preventDefault();
 
+    if (
+      !company.trim() ||
+      !jobTitle.trim() ||
+      !jobDescription.trim()
+    ) {
+      return;
+    }
+
     const result = await createJob(
-      company,
-      jobTitle,
-      jobDescription,
+      company.trim(),
+      jobTitle.trim(),
+      jobDescription.trim(),
       status
     );
 
@@ -49,8 +57,10 @@ function AddJobPage() {
 
         <div className="add-job-header">
           <h1>Add Job Opportunity</h1>
+
           <p>
-            Track a new position and keep all the important details in one place.
+            Track a new position and keep all the important
+            details in one place.
           </p>
         </div>
 
@@ -60,12 +70,16 @@ function AddJobPage() {
             onSubmit={handleSubmit}
           >
             <div className="form-group">
-              <label htmlFor="company">Company</label>
+              <label htmlFor="company">
+                Company
+              </label>
+
               <input
                 id="company"
                 type="text"
                 placeholder="Enter company name"
                 value={company}
+                required
                 onChange={(event) =>
                   setCompany(event.target.value)
                 }
@@ -73,12 +87,16 @@ function AddJobPage() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="jobTitle">Job Title</label>
+              <label htmlFor="jobTitle">
+                Job Title
+              </label>
+
               <input
                 id="jobTitle"
                 type="text"
                 placeholder="Enter job title"
                 value={jobTitle}
+                required
                 onChange={(event) =>
                   setJobTitle(event.target.value)
                 }
@@ -94,6 +112,7 @@ function AddJobPage() {
                 id="jobDescription"
                 placeholder="Paste the job description here"
                 value={jobDescription}
+                required
                 onChange={(event) =>
                   setJobDescription(event.target.value)
                 }
@@ -112,19 +131,33 @@ function AddJobPage() {
                   setStatus(event.target.value)
                 }
               >
-                <option value="Interested">Interested</option>
-                <option value="Applied">Applied</option>
+                <option value="Interested">
+                  Interested
+                </option>
+
+                <option value="Applied">
+                  Applied
+                </option>
+
                 <option value="HR Interview">
                   HR Interview
                 </option>
+
                 <option value="Technical Interview">
                   Technical Interview
                 </option>
+
                 <option value="Final Interview">
                   Final Interview
                 </option>
-                <option value="Offer">Offer</option>
-                <option value="Rejected">Rejected</option>
+
+                <option value="Offer">
+                  Offer
+                </option>
+
+                <option value="Rejected">
+                  Rejected
+                </option>
               </select>
             </div>
 
@@ -137,10 +170,14 @@ function AddJobPage() {
           </form>
 
           <aside className="add-job-info-card">
-            <h3>Why add the full description?</h3>
+            <h3>
+              Why add the full description?
+            </h3>
+
             <p>
-              JobFlow will use the job description later to compare the role
-              requirements with your skills and generate a fit analysis.
+              JobFlow will use the job description later
+              to compare the role requirements with your
+              skills and generate a fit analysis.
             </p>
           </aside>
         </div>
